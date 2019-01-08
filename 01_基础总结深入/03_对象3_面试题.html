@@ -13,8 +13,14 @@
   var obj2 = {m: 3}
   a[obj1.toString()] = 4
   a[obj2.toString()] = 5
-  console.log(a[obj1])
+  console.log(a[obj1]) // 5
+  console.log(a);
 
+  console.log({}.toString());  // [object Object]
+
+  console.log(1 == '1'); //true
+
+  // alert({})  // [object Object]
 
 </script>
 </body>

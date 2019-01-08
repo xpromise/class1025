@@ -16,6 +16,17 @@
     * 存储对象的堆空间内存: 当内存没有引用指向时, 对象成为垃圾对象, 垃圾回收器后面就会回收释放此内存
 -->
 <script type="text/javascript">
+  var a = {};
+  //手动释放堆空间内存
+  a = null;
+
+
+  var b = {};
+  function fn(a) {
+    //只要函数中数据没有任何地方引用了，就会全部释放掉
+    console.log(a);
+  }
+  fn(b);
 
 </script>
 </body>

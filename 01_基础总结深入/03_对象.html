@@ -27,6 +27,28 @@
 -->
 
 <script type="text/javascript">
+  /*
+    对象：
+      1. 属性（非函数）
+        属性名: string
+        属性值: 任意非函数类型
+      2. 方法（函数）
+        属性名: string
+        属性值: 函数类型
+
+      实际上对象都是new某个构造函数产生
+      凡是自己没有new的，都是new Object产生的实例对象
+
+   */
+  //简写方式 实际是 new Object()
+  var obj1 = {
+    "a": {}
+  }
+
+  var obj2 = new Object();
+
+  console.log(obj2.a);
+  console.log(obj2['a']);  //  a is not defined
 
 </script>
 </body>
