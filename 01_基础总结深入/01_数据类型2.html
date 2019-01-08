@@ -23,6 +23,30 @@
 -->
 
 <script type="text/javascript">
+  /*
+    undefined: 代表 定义了，没有赋值，默认值为undefined  （通常情况下我们不会自己给变量赋值为undefined）
+    null: 代表 定义了并且赋值为null  （初始化变量时赋值为null，将来作为对象使用。  变量成为垃圾对象，将其赋值为null）
+   */
+  var a;
+  console.log(a);
+
+  function fn(b) {
+    console.log(b);
+  }
+  console.log(fn());
+
+  var obj = {};
+  console.log(obj.c);
+
+  //定义变量，初始化为null，为了将来作为对象来使用它
+  var d = null;
+
+  d = {};
+  //变量不想用来，赋值为null。使其成为垃圾对象，从而js引擎垃圾回收机制自动回收释放
+  d = null;
+
+  console.log(typeof d);
+
 
 </script>
 </body>

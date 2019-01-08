@@ -28,8 +28,21 @@
 -->
 
 <script type="text/javascript">
+  console.log(typeof 'true');  // 'string'
+  console.log(typeof typeof true);  //string
+  console.log(typeof null); // object
+  console.log(typeof function () {}); // function
+  console.log(typeof []); // object
+  console.log(typeof console); // object
+  console.log(typeof console.log); // function
+  console.log(typeof console.log()); // undefined
 
+  console.log({} instanceof Object); // true
+  console.log([] instanceof Array); // true
+  console.log(null instanceof Object); // false
 
+  console.log(null == undefined); // true
+  console.log(null === undefined); // false
 </script>
 </body>
 </html>

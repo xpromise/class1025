@@ -9805,12 +9805,13 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
 }
 
 })( window );
-
 /*
-	(function (w) {
-		jQuery = function () {}
-
-		w.jQuery = w.$ = jQuery;
+	(function (window) {
+		var jQuery = function( selector, context ) {
+			// The jQuery object is actually just the init constructor 'enhanced'
+			return new jQuery.fn.init( selector, context, rootjQuery );
+		}
+	
+		window.jQuery = window.$ = jQuery;
 	})(window)
-
  */
