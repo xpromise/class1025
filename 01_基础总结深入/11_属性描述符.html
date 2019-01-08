@@ -34,126 +34,100 @@
       set 属性设置时调用的方法
   -->
   <script type="text/javascript">
-    /*var person = {age: 10};
-
-    person.__proto__.sex = '男';
-
+    var person = {age: 18};
     Object.defineProperty(person, 'name', {
-      value: 'jack',    //指定属性的值
-      writable: false,  //这个属性不能修改
-      enumerable: false, //这个属性不能for in遍历出来
-      configurable: false //这个属性不能重新配置，不能删除
+      value: '乔治',
+      writable: true,  //是否可以修改
+      enumerable: true,  //是否可以被for in遍历出来
+      configurable: true  //是否可以重新配置（重新修改writable、enumerable的值）, 是否可以被delete删除
+    })
+
+    // delete person.name;
+
+    console.log(person);
+    person.name = 'jack';
+    console.log(person);
+    person.__proto__.sex = '男';
+    /*
+      for in  通常用于对象， 通常不用于数组
+      for循环  数组, 性能最好, 结构差  如果要写底层框架、库，追求性能用for循环
+      forEach 数组, 性能稍差，结构好  自己写代码，推荐使用forEach
+     */
+    for (var key in person) {
+      console.log(key);
+    }
+
+    var arr = [1, 2, 3, 4];
+    arr.forEach(function (item, index) {
+      console.log(item, index);
     })
 
     console.log(Object.getOwnPropertyDescriptor(person, 'name'));
 
-
-    console.log(person);
-    person.name = 'jack';
-    console.log(person);
-    //遍历对象和对象的原型，找到所有可以遍历的属性
-    for (var key in person) {
-      /!*console.log(key);
-      //判断属性是否是对象自身的属性
-      console.log(person.hasOwnProperty(key));*!/
-      if (person.hasOwnProperty(key)) {
-        console.log(key);
-        console.log(person[key]);
-      }
-    }
-    //不能重新配置
-    /!*Object.defineProperty(person, 'name', {
-      writable: true,
-      enumerable: true,
-      configurable: false
-    })
-    person.name = 'jack';
-    console.log(person);
-*!/
-    /!*var arr = [1, 2, 3, 4, 5];
-
-    arr.forEach(function (item) {
-      console.log(item);
-    })*!/
-    //不能删除
-    //删除person的age属性
-    delete person.name;
-    console.log(person);
-
-    /!*person.forEach(function (value) {
-
-    });*!/
-    console.log(person.forEach);  //undefined
-    /!*
-      数组：
-        forEach() 经常使用
-        for循环  性能最好，一般不用
-        for in  基本不用
-      对象
-        for in
-     *!/
-
-
-*/
-
-    // var person = {name: 'Jack', sex: {option1: '男', option2: '女'}};
-
-    /*Object.seal(对象);
-    - 不可以添加新属性
-    - 不可以删除
-    - 可以读写操作*/
+    //密封对象：不能添加、不能删除
     /*Object.seal(person);
     console.log(person);
-    person.age = 18;
-    console.log(person);
-    delete person.name;
-    console.log(person);
-    console.log(person.name);
-    person.name = 'Rose';
-    console.log(person);*/
-    //将一个对象变成一个常量对象
-    /*Object.freeze(person);
-    person.name = 'Rose';
-    console.log(person);
-    person.sex.option3 = '人妖';
+    person.age = 20;
+    person.sex = '男';
+    delete person.age;
     console.log(person);*/
 
-    //深度冻结，对象中所有属性（不管是直接属性还是属性中属性），都得恒定不变
-    /*function deepFreeze(obj) {
-      if (typeof obj !== 'object') return;
-      //默认情况下，先给第一层冻结
+    //冻结对象: 不能添加、不能删除、不能修改、只能读取(只能冻结直接属性)
+    person = {sex: {option1: '男', option2: '女'}, name: '乔治', age: 18};
+
+    // Object.freeze(person);
+    // console.log(person);
+    // person.age = 20;
+    // person.sex = '男';
+    // delete person.age;
+
+    // person.sex.option3 = '人妖';
+    // console.log(person);
+
+    //深度冻结：将对象中所有属性（包括属性中的属性），全部冻结起来
+    function deepFreeze(obj) {
+      if (typeof obj !== 'object') return obj;
+      //冻结直接属性
       Object.freeze(obj);
-      //遍历对象
       for (var key in obj) {
-        //获取属性值
+        //获取属性的值
         var value = obj[key];
+        //判断属性值是否为object
+        /*if (typeof value === 'object') {
+          //将其全部冻结起来
+          Object.freeze(value);
+        }*/
+        //递归函数：在函数内部调用函数
+        // 遍历 是否是对象 冻结 遍历 是否是对象 冻结
         deepFreeze(value);
       }
     }
+
     deepFreeze(person);
     person.sex.option3 = '人妖';
-    console.log(person);*/
+    console.log(person);
 
-    var person = {firstName: 'Jack', lastName: 'Rose'}
-
-    Object.defineProperty(person, 'fullName', {
+    var obj = {
+      firstName: 'jack',
+      lastName: 'rose'
+    };
+    Object.defineProperty(obj, 'fullName', {
       get: function () {
-        //读取属性时调用的方法
-        console.log(this);
+        //读取属性调用的方法
         return this.firstName + ' ' + this.lastName;
       },
       set: function (value) {
-        //设置属性时调用的方法
+        //设置属性调用的方法
         var arr = value.split(' ');
         this.firstName = arr[0];
         this.lastName = arr[1];
       }
     })
 
-    console.log(person);
-    console.log(person.fullName);
-    person.fullName = 'Tom Jerry';
-    console.log(person);
+    console.log(obj.fullName);
+    obj.fullName = 'tom jerry';
+    console.log(obj);
+
 
   </script>
 </body>
