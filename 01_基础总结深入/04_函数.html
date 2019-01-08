@@ -16,12 +16,99 @@
   * 函数声明
   * 表达式
 4. 如何调用(执行)函数?    this指向是什么？
-  * test()  //直接调用  window
-  * new Test()  // new调用 实例对象
-  * obj.test()  // 对象点取调用 obj
-  * test.call/apply(obj) //使用call/apply方法调用 obj
+  * test()
+  * new Test()
+  * obj.test()
+  * test.call/apply(obj)
 -->
 <script type="text/javascript">
+  /*
+    1. 定义函数：
+      函数声明: 整体提升，变量名和函数体
+      函数表达式: 只有变量名提升
+    2. 定义函数注意：
+   */
+
+  /*//函数声明
+  function fn1() {
+
+  }
+  //函数表达式
+  var fn2 = function () {
+
+  }
+  var fn3 = new Function();*/
+  var flag = false;
+
+  /**
+   * 函数作用
+   * @param x  类型和用途
+   * @param y  类型和用途
+   * @return {number} 类型和用途
+   */
+  function foo(x, y) {
+
+    /*
+      - 什么时候需要形参：
+        函数内部需要一个可变值，需要用形参传进来
+        值内部需要修改，下次需要用修改后的值，定义函数外部的变量
+      - 什么时候需要返回值：
+        当外部需要用上函数内部的数据时，返回值返回
+     */
+
+    return 123;
+  }
+
+  console.log(this);  //window
+
+  function fn() {
+    console.log(this); // ??? 函数调用时才能确定
+
+    console.log(arguments);  // 实参列表：存储着用户传入实参
+    /*
+      伪数组：
+        1. 能通过下标取赋值、有length属性
+        2. 没有数组的一般方法
+     */
+    console.log(arguments.callee === fn);  // true
+    // arguments.push(4);  // arguments.push is not a function
+
+  }
+
+  fn(1, 2, 3);
+
+  var obj = {fn: fn};
+
+  //函数调用方式，导致this指向不一样
+  fn();  //自调用、直接调用    this指向window
+  obj.fn(); //作为方法调用， 对象点取方式调用  this指向obj
+  new fn(); //new调用  this指向实例对象
+  fn.call(obj, 1, 2, 3); //call/apply调用  this指向传入第一个参数
+
+  /*
+    call / apply / bind 的区别于联系
+      共同点： 改变this指向
+      不同点：
+        call/apply 会调用当前函数  bind不会调用函数，返回一个新的函数(和原函数一样, 不同的是this指向被强制绑定)
+        call/apply都会改变当前调用的函数的this指向，只生效一次，后续不影响
+
+        call / bind 传参方式一样   apply第二个参数是一个数组
+     通常情况下需要改变this指向并且要调用函数，我就call/apply
+     只需要改变this指向，不要调用函数，我就用bind （回调函数）
+   */
+
+
+  function foo(x, y) {
+    console.log('函数执行了~', x, y);
+    console.log(this);
+  }
+  foo.call(obj, 1, 2); // this指向为obj
+  foo.apply(obj, [3, 4]); // this指向为obj
+  foo(); //this指向window
+
+  var newFoo = foo.bind(obj, 5, 6); // this指向为obj
+  console.log(newFoo);
+  newFoo();
 
 </script>
 </body>
