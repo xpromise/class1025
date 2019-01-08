@@ -11,15 +11,16 @@
   * 在函数中都可以直接使用this
   * 在定义函数时, this还没有确定, 只有在执行时才动态确定(绑定)的
 2. 如何确定this的值?
-  * test()
-  * obj.test()
-  * new test()
-  * test.call(obj)
+  * test()    window
+  * obj.test()   obj
+  * new test()   实例对象
+  * test.call(obj)  obj
 前置知识:
   * 本质上任何函数在执行时都是通过某个对象调用的
 -->
 <script type="text/javascript">
 
+  console.log(this);  //window
 
 </script>
 </body>

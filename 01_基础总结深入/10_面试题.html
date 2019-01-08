@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <script type="text/javascript">
+    /*
+      我需要将a变成什么值 var a = ?  能让下面的等式成立。
+     */
+    var a = {
+      num: 1,
+      toString: function () {
+        console.log('toString');
+        return this.num++;
+      },
+      valueOf: function () {
+        console.log('valueOf');
+        return this.num++;
+      }
+    };
+    if (a == 1 && a == 2 && a == 3) {
+      console.log(a);
+    }
+
+    console.log(a + 123);
+    console.log(a + 'string');
+
+    var obj = {};
+    obj[a] = 123;
+    /*
+      对象 toString valueOf, 这两个方法在对象做隐式转换时会调用
+        如果是算术运算  + - * / ，优先调用 valueOf。如果valueOf不满足条件，还会调用toString
+        如果是要转化为字符串 调用toString
+     */
+  </script>
+</body>
+</html>
