@@ -10,7 +10,7 @@
   * 全局代码
   * 函数代码
 2. 全局执行上下文对象（真实存在的）
-  * 在执行全局代码前将window确定为全局执行上下文
+  * 在执行全局代码前将window确定为全局执行上下文对象
   * 对全局数据进行预处理
     * var定义的全局变量==>undefined, 添加为window的属性
     * function声明的全局函数==>赋值(fun), 添加为window的方法
@@ -27,6 +27,24 @@
   * 开始执行函数体代码
 -->
 <script type="text/javascript">
+
+  // debugger;
+
+  var a1 = 123;
+  function a2(x, y) {
+    debugger
+
+    console.log(x, y);
+    console.log(this);
+    console.log(arguments);
+    var c = 123;
+    function d() {
+
+    }
+  }
+  console.log(this);
+
+  a2(1, 2);
 
 </script>
 </body>

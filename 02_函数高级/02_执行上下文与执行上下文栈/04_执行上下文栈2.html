@@ -22,6 +22,41 @@
     console.log('foo() end:' + i);
   }
   console.log('global end: ' + i);
+
+  /*
+    var i = 1
+    foo(1);
+    function foo(1) {
+      if (i === 4) {
+        return;
+      }
+      console.log('foo() begin:' + i);  fb 1
+      function foo(2) {
+        if (i === 4) {
+          return;
+        }
+        console.log('foo() begin:' + i);  fb 2
+        function foo(3) {
+          if (i === 4) {
+            return;
+          }
+          console.log('foo() begin:' + i);  fb 3
+          function foo(4) {
+            if (i === 4) {
+              return;
+            }
+            console.log('foo() begin:' + i);
+            foo(i + 1);
+            console.log('foo() end:' + i);
+          }
+          console.log('foo() end:' + i);  // fe 3
+        }
+        console.log('foo() end:' + i); // fe 2
+      }
+      console.log('foo() end:' + i); // fe 1
+    }
+
+   */
 </script>
 </body>
 </html>
