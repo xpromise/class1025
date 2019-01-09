@@ -12,20 +12,27 @@
 -->
 <script type="text/javascript">
   function Person(name, age) {
+    //为了实例对象服务的，给实例对象添加直接属性
+    //属性不确定，可变
     this.name = name;
     this.age = age;
+    // this.sex = '男';
   }
+  //为了实例对象服务的, 给实例对象添加方法
   Person.prototype.setName = function (name) {
     this.name = name;
   }
+  //属性值确定时，不变
   Person.prototype.sex = '男';
 
-  var p1 = new Person('Tom', 12);
-  p1.setName('Jack');
-  console.log(p1.name, p1.age, p1.sex);
+  console.log(Person.sex);
+
+  var p1 = new Person('Tom', 12); //  {name: 'Tom', age: 12, __proto__: Person.prototype}
+  p1.setName('Jack');  //  {name: 'Jack', age: 12, __proto__: Person.prototype}
+  console.log(p1.name, p1.age, p1.sex); // jack  12  男
 
   p1.sex = '女';
-  console.log(p1.name, p1.age, p1.sex);
+  console.log(p1.name, p1.age, p1.sex); // jack  12  女  {name: 'Jack', age: 12, sex: '女', __proto__: Person.prototype}
 </script>
 </body>
 </html>
