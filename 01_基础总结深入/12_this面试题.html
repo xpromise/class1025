@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+
+  window.val = 1;
+	var json = {
+    val: 10,
+    dbl: function () {
+      this.val *= 2;
+    }
+  }
+  json.dbl();  // json  json.val === 20
+  var dbl = json.dbl;
+  dbl();  // window  window.val === 2
+  json.dbl.call(window);  // window  window.val === 4
+  alert(window.val + json.val); // 24
+
+</script>
+</body>
+</html>

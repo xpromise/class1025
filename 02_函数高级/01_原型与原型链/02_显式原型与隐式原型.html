@@ -16,7 +16,21 @@
   * 程序员能直接操作显式原型, 但不能直接操作隐式原型(ES6之前)
 -->
 <script type="text/javascript">
+  // 1. 每个函数function都有一个prototype，即显式原型属性
+  function Fn() {
+    /*Fn.prototype = {};
+    Fn.prototype.constructor = Fn;
+    Fn.prototype.__proto__ = Object.prototype;*/
+  }
+  console.log(Fn.prototype);
+  // 2. 每个实例对象都有一个__proto__，可称为隐式原型属性
+  var fn = new Fn(); // var fn = {}  fn.__proto__ = Fn.prototype;
+  console.log(fn.__proto__);
+  // 3. 实例对象的隐式原型属性的值为其对应构造函数的显式原型属性指向的值（原型对象）
+  console.log(fn.__proto__ === Fn.prototype);
 
+  var obj = {a: {}}; //Object.prototype
+  console.log(obj.__proto__ === Object.prototype); // true  对象默认是new Object产生的
 </script>
 </body>
 </html>

@@ -13,14 +13,27 @@
 2. 如何确定this的值?
   * test()    window
   * obj.test()   obj
-  * new test()   实例对象
   * test.call(obj)  obj
+  * new test()   实例对象
 前置知识:
   * 本质上任何函数在执行时都是通过某个对象调用的
 -->
 <script type="text/javascript">
 
   console.log(this);  //window
+
+  var obj1 = {a: 1};
+  var obj2 = {b: 2};
+
+  function fn() {
+    console.log(this);
+  }
+
+  var newFn = fn.bind(obj1);
+  obj2.newFn = newFn;
+  obj2.newFn();
+
+  new newFn();
 
 </script>
 </body>

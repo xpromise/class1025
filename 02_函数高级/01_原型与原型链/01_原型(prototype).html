@@ -15,8 +15,31 @@
   * 作用: 函数的所有实例对象自动拥有原型中的属性(方法)
 -->
 <script type="text/javascript">
+  /*
+    1. 原型：
+      prototype: 所有函数都有prototype属性，属性的值是一个对象，这个对象原型对象
+        constructor 函数本身
+        __proto__  Object.prototype(除Object以外Object.prototype.__proto__ === null)
+      __proto__: 所有对象都有__proto__属性, 属性的值是一个对象，这个对象就是其构造函数的原型对象
+
+   */
+
+  function fn() {
+
+  }
+  console.log(fn.prototype);
+  console.log(Object.prototype);
+  console.log(fn.prototype.__proto__ === Object.prototype); // true 指向同一个对象（对象相等得地址值相等）
+  console.log(Object.prototype.__proto__);  // null
 
 
+  var obj = {};
+  console.log(obj);
+
+  var f = new fn();
+  console.log(f);
+
+  console.log(fn.__proto__);
 </script>
 </body>
 </html>

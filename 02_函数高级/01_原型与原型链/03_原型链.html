@@ -17,7 +17,11 @@
 3. 构造函数/原型/实体对象的关系2(图解)
 -->
 <script type="text/javascript">
-
+  var obj = {a: 1};
+  obj.__proto__.b = 2;
+  obj.__proto__.a = 3;
+  console.log(obj);
+  console.log(obj.a);
 </script>
 </body>
 </html>
