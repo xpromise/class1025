@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <script type="text/javascript">
+
+    var a = 1,
+      b = 2;
+
+    for (console.log('前面的：' + a); a < 10;console.log('后面的:' + a)) {
+      a += b;  // 3 8 21
+      b += a;  // 5 13 34
+      console.log(a);  // 3 8 21
+    }
+
+  </script>
+</body>
+</html>
