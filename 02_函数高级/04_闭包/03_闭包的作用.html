@@ -15,6 +15,24 @@
   2. 在函数外部能直接访问函数内部的局部变量吗?
 -->
 <script type="text/javascript">
+  function fn1() {
+    var a = 1;
+    function fn2() {
+      console.log(++a);
+    }
+
+    function fn3() {
+      console.log(a);
+    }
+    return {fn2: fn2, fn3: fn3};
+  }
+
+  var f = fn1();
+  f.fn2();  //2
+  f.fn3();  //2
+
+
+
 </script>
 </body>
 </html>

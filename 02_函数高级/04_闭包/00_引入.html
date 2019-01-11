@@ -15,6 +15,23 @@
 -->
 <script type="text/javascript">
 
+  var btns = document.getElementsByTagName('button');
+
+  /*for (var i = 0; i < btns.length; i++) {
+    btns[i].index = i;
+    btns[i].onclick = function () {
+      alert(this.index + 1);
+    }
+  }*/
+
+  for (var i = 0; i < btns.length; i++) {
+    (function (i) {
+      btns[i].onclick = function () {
+        alert(i + 1);
+      }
+    })(i)
+  }
+
 </script>
 </body>
 

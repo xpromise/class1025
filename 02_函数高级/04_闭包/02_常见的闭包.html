@@ -12,6 +12,27 @@
 -->
 <script type="text/javascript">
 
+  function fn1() {
+    var a = 1;
+    function fn2() {
+      console.log(++a);
+    }
+    return fn2;
+  }
+
+  var f = fn1();
+  f();  //2
+  f();  //3
+
+
+  function delay(msg, time) {
+    setTimeout(function () {
+      debugger
+      console.log(msg);
+    }, time)
+  }
+  delay('hello atguigu', 1000);
+
 </script>
 </body>
 </html>
