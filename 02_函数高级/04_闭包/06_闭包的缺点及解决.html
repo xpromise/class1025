@@ -14,6 +14,19 @@
   * 及时释放
 -->
 <script type="text/javascript">
+  function fn1() {
+    var a = 1;
+    function fn2() {
+      console.log(++a);
+    }
+    return fn2;
+  }
+
+  var f = fn1();
+  f();  //2
+  f();  //3
+
+  f = null; //手动释放掉
 </script>
 </body>
 </html>
