@@ -19,6 +19,29 @@
     1. 子类型的原型为父类型的一个实例对象
 -->
 <script type="text/javascript">
+  function Father(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+  Father.prototype.setName = function (name) {
+    this.name = name;
+  }
+
+  function Son() {
+
+  }
+  // Son.prototype = Father.prototype;
+  Son.prototype = new Father();
+  Son.prototype.constructor = Son;
+
+  var s = new Son();
+  console.log(s);  // {__proto__: {name: ？, age: ?, __proto__: Father.prototype}}
+
+  var f = new Father();
+  console.log(f); // {name: ？, age: ?, __proto__: Father.prototype}
+
+
+
 </script>
 </body>
 </html>

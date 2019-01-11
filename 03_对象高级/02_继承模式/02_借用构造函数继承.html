@@ -15,6 +15,21 @@
   1. 在子类型构造函数中通用super()调用父类型构造函数
 -->
 <script type="text/javascript">
+  function Father(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+  Father.prototype.setName = function (name) {
+    this.name = name;
+  }
+
+  function Son(name, age, sex) {
+    Father.call(this, name, age);
+    this.sex = sex;
+  }
+
+  var s = new Son('jack', 18, '男');
+  console.log(s);  //
 
 </script>
 </body>
