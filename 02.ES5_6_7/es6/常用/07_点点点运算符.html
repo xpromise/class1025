@@ -27,6 +27,31 @@
 -->
 <script type="text/javascript">
 
+  /*function sum() {
+    let result = 0;
+    for (var i = 0; i < arguments.length; i++) {
+      result += arguments[i];
+    }
+    return result;
+  }*/
+
+  function sum(a, ...args) {
+    console.log(a, args);
+    return args.reduce(function (prev, curr) {
+      return prev + curr;
+    }, 0)
+  }
+  const result = sum(1, 2, 3, 4);
+  console.log(result);
+
+  const arr1 = [1, 2, 3, 4];
+  console.log(...arr1); // 1 2 3 4
+  const arr2 = [5, 6, 7, 8];
+
+  const arr3 = [0, ...arr1, ...arr2, 9];
+  console.log(arr3);
+
+
 </script>
 
 </body>

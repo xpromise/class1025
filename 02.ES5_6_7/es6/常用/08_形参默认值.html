@@ -13,7 +13,21 @@
     }
 -->
 <script type="text/javascript">
+  function fn(x, y) {
+    x = x || 1;
+    y = y || 2;
 
+    console.log(x, y);
+  }
+
+  // fn(0, 4);
+
+  function foo(x = 1, y = 2) {
+    console.log(x, y);
+  }
+
+  foo();
+  foo(0, false);
 </script>
 
 </body>

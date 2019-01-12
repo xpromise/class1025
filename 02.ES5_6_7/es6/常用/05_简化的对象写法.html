@@ -20,6 +20,31 @@
 -->
 <script type="text/javascript">
 
+  const name = 'jack';
+  const age = 18;
+  const setName = function (name) {
+    this.name = name;
+  }
+
+  /*const person = {
+    name: name,
+    age: age,
+    setAge: function () {
+
+    }
+  }*/
+
+  const person = {
+    name,
+    age,
+    setName,
+    setAge (age) {
+      this.age = age;
+    }
+  }
+
+  console.log(person);
+
 </script>
 </body>
 </html>
