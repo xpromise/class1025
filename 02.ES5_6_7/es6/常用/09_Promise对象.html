@@ -43,6 +43,90 @@
 -->
 
 <script type="text/javascript">
+  /*
+    1. 异步代码
+      定时器
+      DOM事件
+      ajax
+
+    2. promise是什么？ 解决异步编程的一种方案/技术
+       作用: 解决层层嵌套回调函数问题（回调地狱），让异步代码以同步方式表达
+   */
+
+  /*setTimeout(() => {
+    console.log('请求a数据回来了');
+    setTimeout(() => {
+      console.log('请求b数据回来了');
+      setTimeout(() => {
+        console.log('请求c数据回来了');
+      }, 3000)
+    }, 2000)
+  }, 1000)*/
+
+  console.log(1);
+
+  const promise = new Promise((resolve, reject) => {
+    /*
+      resolve 解决  将初始化状态改为成功的状态
+      reject 拒绝  将初始化状态改为失败的状态
+
+      在函数中，设置异步代码
+
+      promise对象一共三种状态：
+        初始化状态：pending ，当promise对象创建成功时，默认状态就是初始化状态
+        成功的状态：fullfilled，当函数内部调用了resolve方法，就会由初始化状态改为成功的状态, 就会触发成功的回调函数
+        失败的状态：rejected，当函数内部调用了reject方法，就会由初始化状态改为失败的状态, 就会触发失败的回调函数
+
+        注意：没办法由成功变为失败，或者由失败变成成功
+     */
+    console.log(2);
+    setTimeout(() => {
+      //先执行完所有代码之后，才可能执行then catch函数中的代码
+      console.log('定时器执行了');
+      const data = 'hello';
+      reject(data);
+      console.log('???');
+    }, 1000)
+  });
+
+  console.log(3);
+
+  promise
+    /*.then(() => {
+      //成功
+    }, () => {
+      //失败
+    })*/
+    .then(result => {
+      console.log('promise状态为成功的回调函数~');
+      console.log(result);
+      console.log('下面代码执行了~');
+    })
+    .catch(error => {
+      console.log('promise状态为失败的回调函数~');
+      console.log(error);
+    })
+
+  console.log(promise);
+
+  console.log(4);
+
+  const promise1 = Promise.resolve('success');
+  promise1
+    .then(res => {
+      console.log(res);
+    })
+  console.log(promise1);
+  const promise2 = Promise.reject('error');
+  promise2
+    .catch(err => {
+      console.log(err);
+    })
+  console.log(promise2);
+
+
+
+
 
 </script>
 
