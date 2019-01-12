@@ -23,6 +23,43 @@
    5. 根据arr产生一个新数组, 返回的每个元素要大于4
    6. 输出arr所有元素累加的结果
 */
+var arr = [2, 5, 6, 9, 7, 7, 6, 3 ,5 ,1];
+// 1. 输出第一个6的下标
+console.log(arr.indexOf(6));
+// 2. 输出最后一个6的下标
+console.log(arr.lastIndexOf(6));
+// 3. 输出所有元素的值和下标
+// arr.forEach(function (item, index) {
+//   console.log(item, index);
+// })
+// 4. 根据arr产生一个新数组,要求每个元素都比原来大10
+var newArr = arr.map(function (item, index) {
+  //生成新数组。不会影响原数组
+  //我们操作数据时，一般来讲尽量不影响原数据
+  //函数返回值就是新数组的每一项值
+  //新数组个数不变，值可能变
+  return item + 10;
+})
+console.log(newArr);
+console.log(arr);
+// 5. 根据arr产生一个新数组, 返回的每个元素要大于4
+newArr = arr.filter(function (item, index) {
+  //生成新数组。不会影响原数组
+  //函数返回值为true的将会保留为新数组的每一项值
+  //新数组个数可能会少，值不会变
+  return item > 4;
+})
+console.log(newArr);
+console.log(arr);
+// 6. 输出arr所有元素累加的结果
+var result = arr.reduce(function (previous, current) {
+  /*
+    previous: 之前函数的返回值，默认值为第二个参数 0
+    current: 当前遍历的数组的值  相对于item
+   */
+  return previous + current;
+}, 0)
+console.log(result);
 
 </script>
 </body>

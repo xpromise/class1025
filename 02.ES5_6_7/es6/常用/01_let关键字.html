@@ -25,7 +25,55 @@
   * 使用let取代var是趋势
 -->
 <script type="text/javascript">
+  // * 在块作用域内有效   {}
 
+  if (true) {
+    var a = 123;
+    let b = 456;
+  }
+  console.log(a); // 123
+  // console.log(b); // b is not defined
+
+  /*for (var i = 0; i < .length; i++) {
+
+  }
+  switch () {
+
+  }
+  while () {
+
+  }*/
+
+  // * 不能重复声明
+  var c = 123;
+  c = 456;
+  console.log(c);
+
+  let d = 123;
+  // let d = 456;  // Identifier 'd' has already been declared
+
+  // * 不会预处理, 不存在提升
+  console.log(e);
+  var e = 123;
+  // console.log(f); // f is not defined
+  let f = 456;
+
+
+  var btns = document.getElementsByTagName('button');
+
+  /*for (var i = 0; i < btns.length; i++) {
+    (function (i) {
+      btns[i].onclick = function () {
+        alert(i + 1);
+      }
+    })(i)
+  }*/
+
+  for (let i = 0; i < btns.length; i++) {
+    btns[i].onclick = function () {
+      alert(i + 1);
+    }
+  }
 
 </script>
 </body>
