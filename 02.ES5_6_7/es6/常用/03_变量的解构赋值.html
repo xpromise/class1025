@@ -16,6 +16,28 @@
   * 给多个形参赋值
 -->
 <script type="text/javascript">
+  const person = {
+    name: 'jack',
+    age: 18,
+    sex: '男'
+  };
+  // const name = person.name;
+  // const age = person.age;
+  // const sex = person.sex;
+  //对象的结构赋值
+  const {age, sex, hobby, name} = person;
+  console.log(name, age, sex, hobby);
+
+  //数组的结构赋值
+  const arr = [1, 2, 3, 4];
+  const [a, b, , d, e] = arr;
+  console.log(a, b, d, e);
+
+  //对象的结构赋值
+  function fn({name, age}) {
+    console.log(name, age);
+  }
+  fn(person);
 
 </script>
 </body>
