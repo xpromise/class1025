@@ -84,7 +84,7 @@
       //先执行完所有代码之后，才可能执行then catch函数中的代码
       console.log('定时器执行了');
       const data = 'hello';
-      reject(data);
+      resolve(data);
       console.log('???');
     }, 1000)
   });

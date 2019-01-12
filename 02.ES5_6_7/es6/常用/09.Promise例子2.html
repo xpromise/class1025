@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <script type="text/javascript">
+    /*
+    setTimeout(() => {
+      console.log('请求a数据回来了');
+    }, 1000)
+    setTimeout(() => {
+      console.log('请求b数据回来了');
+    }, 2000)
+    setTimeout(() => {
+      console.log('请求c数据回来了');
+    }, 3000)
+    */
+
+    /*const promise = new Promise((resolve, reject) => {
+      let resolvedNum = 0;
+      let result = [];
+
+      setTimeout(() => {
+        resolvedNum++;
+        console.log('请求a数据回来了');
+        const data = 'a数据';
+        resolved(data);
+      }, 1000)
+
+      setTimeout(() => {
+        resolvedNum++;
+        console.log('请求b数据回来了');
+        const data = 'b数据';
+        resolved(data);
+      }, 2000)
+
+      setTimeout(() => {
+        resolvedNum++;
+        console.log('请求c数据回来了');
+        const data = 'c数据';
+        resolved(data);
+      }, 3000)
+
+      function resolved(data) {
+        result.push(data);
+        if (resolvedNum === 3) {
+          resolve(result);
+        }
+      }
+
+    })
+
+    promise
+      .then(res => {
+        console.log(res);
+      })
+*/
+
+    /*const promise1 = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        console.log('请求a数据回来了');
+        reject('a数据');
+      }, 1000)
+    })
+    const promise2 = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        console.log('请求b数据回来了');
+        resolve('b数据');
+      }, 2000)
+    })
+    const promise3 = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        console.log('请求c数据回来了');
+        resolve('c数据');
+      }, 3000)
+    })
+
+    Promise.all([promise1, promise2, promise3])
+      .then(res => console.log(res))  //数组中所有promise对象状态都为成功的状态时，才触发当前函数
+      .catch(err => console.log(`err: ${err}`))  //数组中只要有一个promise对象状态为失败的状态时，就立即触发当前函数
+*/
+
+    /*setTimeout(() => {
+      console.log('定时器1执行了~');
+    }, 0)
+
+    new Promise((resolve, reject) => {
+      resolve(false);
+    })
+      .then(() => console.log('成功的回调3'))
+
+    Promise.resolve()
+      .then(() => {
+        console.log('成功的回调1');
+        Promise.resolve()
+          .then(() => console.log('成功的回调4'))
+        setTimeout(() => {
+          console.log('定时器2执行了~');
+        }, 0)
+      })
+      .then(() => console.log('成功的回调2'))
+
+    console.log('主线程执行完了~');
+*/
+    /*
+      先清空微任务队列 再清空宏任务队列
+     */
+
+  </script>
+</body>
+</html>
