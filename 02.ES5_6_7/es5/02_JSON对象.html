@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>02_JSON对象</title>
+</head>
+<body>
+<!--
+1. JSON.stringify(obj/arr)
+  * js对象(数组)转换为json对象(数组)
+2. JSON.parse(json)
+  * json对象(数组)转换为js对象(数组)
+
+-->
+<script type="text/javascript">
+  /*
+    JSON数据的类型是字符串，
+    作用：与后台交互，传输数据用的，
+    注意，json数据不能保存函数数据
+   */
+
+  var json = '[{"name": "jack", "age": 18}]';
+
+  var js = JSON.parse(json);
+  js.push(function () {});
+  console.log(js);
+  json = JSON.stringify(js);
+  console.log(json);
+
+</script>
+</body>
+</html>
