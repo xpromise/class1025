@@ -28,6 +28,52 @@
   -->
 
   <script type="text/javascript">
+    const arr = [1, 2, 3, 4];
+    console.log(arr);
+
+    for (let value of arr) {
+      console.log(value);
+    }
+
+    function fn() {
+      console.log(arguments);
+      for (let value of arguments) {
+        console.log(value);
+      }
+    }
+    fn(2, 3, 5, 4);
+
+    const str = 'hello atguigu';
+    console.log(String.prototype);
+    for (let value of str) {
+      console.log(value);
+    }
+
+    //默认对象没有iterator接口，所以不能使用for of遍历
+    //但是有办法实现 generator函数 babel编译器
+    const obj = {name: 123};
+    console.log(obj);
+    // for (let value of obj) {
+    //   console.log(value);
+    // }
+
+    function iterator(arr) {
+      let index = 0;
+      const length = arr.length;
+      return {
+        next () {
+          return index >= length ? {value: 'undefined', done: true} : {value: arr[index++], done: false}
+        }
+      }
+    }
+
+    const iteratorObj = iterator(arr);
+    console.log(iteratorObj.next());
+    console.log(iteratorObj.next());
+    console.log(iteratorObj.next());
+    console.log(iteratorObj.next());
+    console.log(iteratorObj.next());
+    console.log(iteratorObj.next());
 
   </script>
 </body>

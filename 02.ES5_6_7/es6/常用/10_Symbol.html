@@ -32,6 +32,26 @@
 
 
 <script type="text/javascript">
+  const s1 = Symbol('name');
+  const s2 = Symbol('age');
+  console.log(s1);
+  console.log(s2);
+  console.log(s1 === s2); // false
+  console.log(typeof s1);
+
+  // console.log(s1 + 123);  // Cannot convert a Symbol value to a number
+  // console.log(s1 + '123'); // Cannot convert a Symbol value to a string
+
+  const obj = {
+    [s1]: 'jack',
+    [s2]: 18,
+    sex: '男'
+  }
+  console.log(obj);
+
+  for (let key in obj) {
+    console.log(key);
+  }
 
 </script>
 
