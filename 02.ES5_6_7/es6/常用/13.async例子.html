@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <script type="text/javascript">
+    /*setTimeout(() => {
+      console.log('请求a数据回来了');
+      setTimeout(() => {
+        console.log('请求b数据回来了');
+        setTimeout(() => {
+          console.log('请求c数据回来了');
+        }, 3000)
+      }, 2000)
+    }, 1000)*/
+
+
+  async function fn() {
+
+    const result1 = await new Promise((resolve, reject) => {
+      setTimeout(() => {
+        console.log('请求a数据回来了');
+        resolve('a数据');
+      }, 1000)
+    })
+
+    const result2 = await new Promise((resolve, reject) => {
+      setTimeout(() => {
+        console.log('请求b数据回来了');
+        resolve('b数据');
+      }, 2000)
+    })
+
+    const result3 = await new Promise((resolve, reject) => {
+      setTimeout(() => {
+        console.log('请求c数据回来了');
+        resolve('c数据');
+      }, 3000)
+    })
+
+    return [result1, result2, result3];
+
+  }
+
+ fn()
+   .then(res => console.log(res))
+   .catch(err => console.log(err))
+
+  </script>
+</body>
+</html>
