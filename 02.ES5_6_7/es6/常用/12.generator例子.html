@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <script type="text/javascript">
+    /*setTimeout(() => {
+      console.log('请求a数据回来了');
+      setTimeout(() => {
+        console.log('请求b数据回来了');
+        setTimeout(() => {
+          console.log('请求c数据回来了');
+        }, 3000)
+      }, 2000)
+    }, 1000)*/
+
+
+    function* generator() {
+
+      let result = [];
+
+      result.push(yield (
+        setTimeout(() => {
+          console.log('请求a数据回来了');
+          iteratorObj.next('a数据');
+        }, 1000)
+      ))
+
+      result.push(yield (
+        setTimeout(() => {
+          console.log('请求b数据回来了');
+          iteratorObj.next('b数据');
+        }, 2000)
+      ))
+
+      result.push(yield (
+        setTimeout(() => {
+          console.log('请求c数据回来了');
+          iteratorObj.next('c数据');
+        }, 3000)
+      ))
+
+      console.log(result);
+
+    }
+
+    const iteratorObj = generator();
+    iteratorObj.next();
+
+
+  </script>
+</body>
+</html>

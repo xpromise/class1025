@@ -26,10 +26,54 @@
       5、再次调用next方法会从上一次停止时的yield处开始，直到最后
       6、yield语句返回结果通常为undefined， 当调用next方法时传参内容会作为启动时yield语句的返回值。
   -->
-<script type="text/javascript" src="./js/jquery-1.10.1.min.js"></script>
 <script type="text/javascript">
+  //定义generator函数，function关键字后面加一个*
+  function* generator() {
+    console.log('函数开始执行了~');
+    let result = yield 123; //result的值看下一次next方法调用的传入的参数
+    console.log(result);
+    console.log('执行语句一');
+    result = yield 456;
+    console.log(result);
+    console.log('执行语句二');
+    result = yield 789;
+    console.log(result);
+    console.log('执行语句三');
+    console.log('函数执行完了');
+  }
+  //惰性函数
+  const iteratorObj = generator();
+  console.log(iteratorObj.next()); //next方法返回值 看yield后面的表达式值
+  console.log(iteratorObj.next(222));
+  console.log(iteratorObj.next(333));
+  console.log(iteratorObj.next(444));
 
+  console.log(iteratorObj.next());
+  console.log(iteratorObj.next());
 
+  const person = {
+    name: 'jack',
+    age: 18,
+    sex: '男'
+  }
+  //手动给对象添加iterator接口
+  // person[Symbol.iterator] = function* () {
+  //   for (let key in this) {
+  //     yield this[key];
+  //   }
+  // }
+
+  Object.prototype[Symbol.iterator] = function* () {
+    for (let key in this) {
+      yield this[key];
+    }
+  }
+
+  console.log(person);
+
+  for (let value of person) {
+    console.log(value);
+  }
 </script>
 </body>
 </html>
