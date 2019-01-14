@@ -32,6 +32,73 @@
         5). 深拷贝包含函数数据的对象/数组
 -->
 <script type="text/javascript">
+  /*const person = {name: 'jack', age: 18};
+  const obj = person;
+  obj.name = 'bob';
+  console.log(person);*/
+
+  //浅度克隆
+  /*const person = {name: 'jack', age: 18, sex: {option1: '男', option2: '女'}};
+  const obj = {};
+  Object.assign(obj, person);
+  obj.sex.option3 = '人妖';
+  console.log(person);*/
+
+  //实现深度克隆： 原理让每一个对象的地址值不一样
+  const person = {name: 'jack', age: 18, sex: {option1: '男', option2: '女'}, setName: function () {
+      
+    }};
+  //深度克隆：局限性不能克隆函数数据
+  // const obj = JSON.parse(JSON.stringify(person));
+  // obj.sex.option3 = '人妖';
+  // console.log(obj);
+  // console.log(person);
+
+  //实现深度克隆
+
+  //检查数据类型
+  function checkType(obj) {
+    return Object.prototype.toString.call(obj).slice(8, -1);
+  }
+
+  // const value = 'string';
+  // console.log(Object.prototype.toString.call(value).slice(8, -1));
+  // const result = Object.prototype.toString.call(value);
+  // console.log(result.substring(8, result.length - 1));
+  // console.log(Object.prototype.toString.call(value).split(' ')[1].split(']')[0]);
+
+  function deepClone(obj) {
+    let newObj = null;
+    //检查数据类型
+    const type = checkType(obj);
+    console.log(type);
+
+    if (type === 'Object') {
+      newObj = {};
+    } else if (type === 'Array') {
+      newObj = [];
+    } else {
+      return obj;
+    }
+
+    //实现深度克隆
+    for (let key in obj) {
+      const value = obj[key];
+      /*if (checkType(value) === 'object' || 'array') {
+        newObj[key] = deepClone(value);
+      } else {
+        newObj[key] = value;
+      }*/
+      newObj[key] = deepClone(value);
+    }
+
+    return newObj;
+  }
+
+  const obj = deepClone(person);
+  console.log(obj);
+  obj.sex.option3 = '人妖';
+  console.log(person);
 
 </script> 
 </body>
