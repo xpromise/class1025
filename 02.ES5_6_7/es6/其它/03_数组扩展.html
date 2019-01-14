@@ -19,6 +19,36 @@
 4. findIndex(function(value, index, arr){return true}) : 找出第一个满足条件返回true的元素下标
 -->
 <script type="text/javascript">
+  const btns2 = document.querySelectorAll('button'); // 快照
+  // const btns1 = document.getElementsByTagName('button'); // 实时
+
+  // console.log(btns1);
+  console.log(btns2);
+
+  btns2.forEach((item, index) => {
+    item.onclick = function () {
+      alert(index);
+    }
+  })
+
+  console.log(btns2.map);
+  const btns = Array.from(btns2);
+  console.log(btns);
+  console.log(btns.map);
+
+  
+  console.log(Array.of(1, 2, 3, 4));
+
+  const arr = [1, 2, 3 ,4];
+  /*const result = arr.find((item, index, arr) => {
+    console.log(item, index, arr);
+    return item === 2;
+  })*/
+  const result = arr.findIndex((item, index, arr) => {
+    console.log(item, index, arr);
+    return item === 2;
+  })
+  console.log(result);
 
 </script>
 </body>

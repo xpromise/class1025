@@ -16,5 +16,50 @@
 -->
 <script type="text/javascript">
 
+ /* function Father(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+  Father.prototype.setName = function (name) {
+    this.name = name;
+  }
+
+  function Son(name, age, sex) {
+    Father.call(this, name, age);
+    this.sex = sex;
+  }
+
+  Son.prototype = new Father();
+  Son.prototype.constructor = Son;*/
+
+  class Father {
+    constructor (name, age) {
+      this.name = name;
+      this.age = age;
+    }
+    //给类的原型上添加方法
+    setName (name) {
+      this.name = name;
+    }
+  }
+
+  class Son extends Father {
+    //当使用extends继承，定义constructor方法时，在其内必须调用super方法
+    constructor (name, age, sex) {
+      super(name, age); //new Father(name, age)
+      this.sex = sex;
+    }
+
+    setAge (age) {
+      this.age = age;
+    }
+  }
+
+  const f = new Father('jack', 18);
+  console.log(f);
+
+  const s = new Son('jack', 18, '男');
+  console.log(s);
+
 </script>
 </html>
