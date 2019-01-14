@@ -26,6 +26,29 @@
 -->
 
 <script type="text/javascript">
+  //多个value不重复的 value集合体
+  const s = new Set([2, 3, 6, 8, 6]);
+  console.log(s);
+  s.add(1);
+  s.add(2);
+  s.add(1);
+  console.log(s.has(2));
+  console.log(s.values());
+  s.clear();
+  console.log(s);
+  //数组去重
+  const arr = [2, 3, 6, 8, 6];
+  //凡是部署iterator接口，可以用for of遍历
+  //凡是部署iterator接口，可以用...运行符
+  const newArr = [...new Set(arr)];
+  console.log(newArr);
+
+  //map：多个key不重复的 key-value集合体
+  const sex = {sex: '男'};
+  const age = {age: 18};
+  const m = new Map([['name', 'jack'], ['age', 18], [sex, age], ['name', 'bob']]);
+  console.log(m);
+  console.log(m.get(sex));
 
 </script>
 </body>
