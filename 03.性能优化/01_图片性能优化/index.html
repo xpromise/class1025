@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>test</title>
+</head>
+<body>
+<img src="./img/1.jpg.webp" alt="img">
+<script type="text/javascript">
+  const img = document.querySelector('img');
+  img.onload = function () {
+    //图片加载完成的事件
+    console.log('触发了onload');
+  }
+  img.onerror = function () {
+    //图片加载失败的事件
+    console.log('触发了onerror');
+    img.src = img.src.slice(0, -5);
+  }
+</script>
+</body>
+</html>
