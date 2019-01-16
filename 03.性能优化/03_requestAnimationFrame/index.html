@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    #box{
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: pink;
+    }
+  </style>
+</head>
+<body>
+  <div id="box"></div>
+  <script type="text/javascript">
+    const box = document.getElementById('box');
+    let num = 0;
+    /*var timer = setInterval(() => {
+      num++;
+      if (num >= 400) {
+        clearInterval(timer)
+      }
+      box.style.left = num + 'px';
+    }, 1000 / 60)*/
+
+    //今后做动画效果，之前使用定时器循环控制位置
+    //现在可以使用requestAnimationFrame取代它，性能更好， 在下一次重绘之前执行
+    function move() {
+      const id = requestAnimationFrame(function () {
+        num++;
+        box.style.left = num + 'px';
+        if (num >= 400) return;
+        move();
+      })
+      console.log(id);
+      //取消动画
+      cancelAnimationFrame(id);
+    }
+
+    move();
+
+  </script>
+</body>
+</html>

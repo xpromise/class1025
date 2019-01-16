@@ -3,9 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <title>test</title>
+  <style>
+    img{
+      display: block;
+      /*transform: translateZ(0);*/
+      will-change: transform;
+    }
+  </style>
 </head>
 <body>
-<img src="./img/1.jpg.webp" alt="img">
+<div>
+  <img src="./img/1.jpg.webp" alt="img">
+</div>
 <script type="text/javascript">
   const img = document.querySelector('img');
   img.onload = function () {
