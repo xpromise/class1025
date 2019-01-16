@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <script type="text/javascript">
+    console.log(localStorage.getItem('user_data'));
+
+    window.addEventListener('storage', function (ev) {
+      console.log(ev);
+      //只要storage发生变化，就会调用当前函数
+      //哪个key发生了变化
+      console.log(ev.key);
+      //变化后新的值
+      console.log(ev.newValue);
+    })
+
+  </script>
+</body>
+</html>

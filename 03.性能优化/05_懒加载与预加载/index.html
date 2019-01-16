@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>懒加载</title>
+  <style>
+    div{
+      width: 80%;
+      margin: 0 auto;
+    }
+    img{
+      float: left;
+      width: 50%;
+      height: 400px;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <img src="./imgs/loading.gif" class="lazy-loader" data-src="./imgs/1.jpg" >
+    <img src="./imgs/loading.gif" class="lazy-loader" data-src="./imgs/2.jpg" >
+    <img src="./imgs/loading.gif" class="lazy-loader" data-src="./imgs/3.jpg" >
+    <img src="./imgs/loading.gif" class="lazy-loader" data-src="./imgs/4.jpg" >
+    <img src="./imgs/loading.gif" class="lazy-loader" data-src="./imgs/5.jpg" >
+    <img src="./imgs/loading.gif" class="lazy-loader" data-src="./imgs/6.jpg" >
+    <img src="./imgs/loading.gif" class="lazy-loader" data-src="./imgs/7.jpg" >
+    <img src="./imgs/loading.gif" class="lazy-loader" data-src="./imgs/8.jpg" >
+    <img src="./imgs/loading.gif" class="lazy-loader" data-src="./imgs/9.jpg" >
+    <img src="./imgs/loading.gif" class="lazy-loader" data-src="./imgs/10.jpg" >
+    <img src="./imgs/loading.gif" class="lazy-loader" data-src="./imgs/11.jpg" >
+    <img src="./imgs/loading.gif" class="lazy-loader" data-src="./imgs/12.jpg" >
+    <img src="./imgs/loading.gif" class="lazy-loader" data-src="./imgs/13.jpg" >
+    <img src="./imgs/loading.gif" class="lazy-loader" data-src="./imgs/14.jpg" >
+    <img src="./imgs/loading.gif" class="lazy-loader" data-src="./imgs/15.jpg" >
+    <img src="./imgs/loading.gif" class="lazy-loader" data-src="./imgs/16.jpg" >
+    <img src="./imgs/loading.gif" class="lazy-loader" data-src="./imgs/17.jpg" >
+    <img src="./imgs/loading.gif" class="lazy-loader" data-src="./imgs/18.jpg" >
+  </div>
+  <script type="text/javascript">
+    const viewHeight = document.documentElement.clientHeight;
+    
+    function lazyLoad() {
+      const imgs = document.querySelectorAll('.lazy-loader');
+
+      imgs.forEach(img => {
+        const top = img.getBoundingClientRect().top;
+        if (top < viewHeight) {
+          //图片出现在可视区域内
+          const src = img.dataset.src;
+          const image = new Image();
+          image.src = src;
+          image.onload = function () {
+            img.src = src;
+            //移除class data-src
+            img.removeAttribute('data-src');
+            img.className = '';
+          }
+        }
+      })
+    }
+
+    lazyLoad();
+
+    document.onscroll = lazyLoad;
+
+    //预加载
+    const arr = [];
+    new Image().src = arr[0]
+
+  </script>
+</body>
+</html>

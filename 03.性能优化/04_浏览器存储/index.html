@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <script type="text/javascript">
+    setTimeout(() => {
+      const data = [{name: 'jack'}, {name: 'rose'}, {name: 'jerry'}, {name: 'tom'}];
+      /*
+        localStorage 本地持久化存储
+        sessionStorage 本地临时存储
+       */
+       //设置本地存储方法
+      localStorage.setItem('user_data1', JSON.stringify(data));
+      //当关闭浏览器后会自动清除， 会话储存
+      // sessionStorage.setItem('user_data', JSON.stringify(data));
+    }, 1000)
+    //读取本地存储的方法
+    // const data = localStorage.getItem('user_data');
+    // console.log(data);
+    //删除本地存储的方法
+    // localStorage.removeItem('user_data');
+    // localStorage.clear();
+
+
+  </script>
+</body>
+</html>
