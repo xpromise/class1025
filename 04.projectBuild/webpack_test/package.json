@@ -1,0 +1,18 @@
+{
+  "name": "webpack_test",
+  "version": "1.0.0",
+  "description": "* mode模式\r   * 开发环境 development\r     * 自动编译运行项目、检查语法错误、详细的错误提示等。。。 （能帮助程序员更好的写代码）\r   * 生产环境 production\r     * 压缩代码、兼容性处理等。。。\r   * 开发依赖 devDependencies\r     * 项目构建打包需要的依赖\r   * 生产依赖 dependencies\r     * 项目上线运行时需要的依赖\r * 下载\r   * npm i webpack webpack-cli -g\r   * npm i webpack webpack-cli -D",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.3.3",
+    "@babel/preset-env": "^7.3.1",
+    "babel-loader": "^8.0.5",
+    "webpack": "^4.29.4",
+    "webpack-cli": "^3.2.3"
+  }
+}
