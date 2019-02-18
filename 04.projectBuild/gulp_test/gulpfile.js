@@ -6,17 +6,8 @@ const gulp = require('gulp');
 const babel = require('gulp-babel');
 const browserify = require('gulp-browserify');
 const rename = require("gulp-rename");
-/*
-  流程：
-    1. gulp官网找插件 https://gulpjs.com/plugins/  gulp-插件名称
-    2. 下载插件 npm i xxx -D
-    3. 引入插件 const xxx = require("gulp-xxx");
-    4. 配置插件任务 gulp.task('name', function () {})
-    5. 运行插件任务 gulp 任务名称
- */
 
 //注册任务
-
 gulp.task('babel', function () {
   //当前任务要执行的回调函数
   return gulp.src('src/js/*.js')      //将要处理的js文件引入进来
