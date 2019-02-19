@@ -1,4 +1,5 @@
 const {resolve} = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   //入口
@@ -6,9 +7,9 @@ module.exports = {
   //输出
   output: {
     //输出的文件路径
-    path: resolve(__dirname, 'build/js'),
+    path: resolve(__dirname, 'build'),
     //文件名称
-    filename: 'built.js'
+    filename: './js/[name].[hash:7].js'
   },
   //loader
   module: {
@@ -42,9 +43,29 @@ module.exports = {
         }, {
           loader: "less-loader" // 将less编译成css
         }]
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,  // 8 * 1024 = 8kb  8kb以下的图片会自动转换为base64格式
+              name: '[hash:7].[ext]',
+              outputPath: 'images',  //图片资源的输出路径（输出到哪个文件夹去）
+              publicPath: '../build/images' //修改样式文件中url图片路径
+            }
+          }
+        ]
       }
     ]
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: 'index.html',  //重命名输出文件的名字
+      template: './src/index.html'  //模板资源：往引入的模板资源中添加js和css，输出出去
+    })
+  ],
   //模式
   mode: 'development'
 }

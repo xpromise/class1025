@@ -19,3 +19,9 @@
 * 手动配置webpack
   * 配置文件 webpack.config.js   
   * 指令： webpack  会去当前目录读取 webpack.config.js  文件的配置
+* 下载指令
+  * npm i xxx -D / --save-dev  下载到开发依赖
+  * cyarn add xxx --dev   下载到开发依赖
+  * npm i xxx -g 全局安装
+  * cyarn global add xxx 全局安装  （xuy）
+  * 
