@@ -25,7 +25,7 @@
   * npm i xxx -g 全局安装
   * cyarn global add xxx 全局安装  （xuy）
 
-
+* package.json
   {
     "name": "webpack_test",   //包名，与npm下载相关。注意不能与下载的包名重复
     "version": "1.0.0",      // 1 大版本  0 小的功能的变化 0 bug修复
@@ -40,3 +40,12 @@
     "dependencies": {  //生成依赖
     }
   }
+  
+* 生产环境：
+  * 剔除无用插件/loader： webpack-dev-server html-loader..
+  * js文件： 需要压缩 ---> mode = production
+  * less文件：
+    * 提取成单独css文件，方便以link方式引入 --> extract-text-webpack-plugin@next
+    * 扩展前缀 postcss-loader --> 需要一个配置文件 postcss.config.js
+    * 压缩  less-plugin-clean-css
+  * html文件：需要压缩 --> 增加配置项 minify  
