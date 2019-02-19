@@ -3,16 +3,21 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // npm i extract-text-webpack-plugin@next -D
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CleanCSSPlugin = require("less-plugin-clean-css");
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
   //入口
-  entry: './src/js/app.js',  //手动引入html文件
+  entry: {
+    main: './src/js/app.js',
+    test: './src/js/test.js'
+  },  //手动引入html文件
   //输出
   output: {
     //输出的文件路径
     path: resolve(__dirname, '../dist'),
     //文件名称
-    filename: './js/[name].[hash:7].js'
+    filename: './js/[name].[chunkhash:7].js'
   },
   //loader
   module: {
@@ -70,7 +75,48 @@ module.exports = {
       }
     }),
     new ExtractTextPlugin("./css/[name].[hash:7].css"),  //提取css成单独文件
+    new WorkboxPlugin.GenerateSW({
+      // 这些选项帮助 ServiceWorkers 快速启用
+      // 不允许遗留任何“旧的” ServiceWorkers
+      clientsClaim: true,
+      skipWaiting: true
+    })
+    /*new CleanWebpackPlugin([
+      'dist'
+    ], {
+      root: resolve(__dirname, '../'),
+      // exclude:  ['shared.js'],
+    })*/
   ],
   //模式
   mode: 'production',
+  //提取公共模块
+  optimization: {
+    splitChunks: {
+      //提取公共模块的分组
+      cacheGroups: {
+        vendors: {  //提取后输出的模块名称
+          test: /[\\/]node_modules[\\/]/,  //针对哪些模块文件处理
+          priority: -10,  //优先级
+          chunks: "all",
+          minSize: 0,  //提取的模块最小的大小
+          minChunks: 2,  //模块被引用的最小次数
+          // maxAsyncRequests: 5,
+          // maxInitialRequests: 3,
+          // automaticNameDelimiter: '~',  //防止命名冲突
+          name: 'vendors',
+        },
+        common: {
+          test: /[\\/]src[\\/]js[\\/]/,
+          chunks: "all",
+          minSize: 0,  //提取的模块最小的大小
+          minChunks: 2,  //模块被引用的最小次数
+          // maxAsyncRequests: 5,
+          // maxInitialRequests: 3,
+          // automaticNameDelimiter: '~',  //防止命名冲突
+          name: 'common',
+        }
+      }
+    }
+  }
 }

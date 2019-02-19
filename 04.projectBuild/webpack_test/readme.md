@@ -49,3 +49,13 @@
     * 扩展前缀 postcss-loader --> 需要一个配置文件 postcss.config.js
     * 压缩  less-plugin-clean-css
   * html文件：需要压缩 --> 增加配置项 minify  
+  
+* 优化手段：
+  * tree shaking： 去除无用的代码（定义了，但没有使用的代码）
+    * 借助的是es6模块化完成的
+    * package.json中配置 "sourceType": "module"  不让es6模块化语法装换
+    * 实际上通过UglifyjsWebpackPlugin插件完成当前功能
+  * code split：代码分割，提取公共代码成单独模块  
+  * 缓存 - 将webpack构建打包的文件缓存下来（如果文件没有发生变化，不在重新构建）
+    * hash --> chunkhash
+  * pwa 离线可访问技术  
