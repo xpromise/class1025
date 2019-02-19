@@ -58,7 +58,6 @@ gulp.task('eslint', () => {
     .pipe(eslint())  //语法检查
     .pipe(eslint.format())  //将检查出来的语法错误，打印到控制台中
     .pipe(livereload())
-  
 });
 
 gulp.task('babel', function () {
@@ -69,7 +68,6 @@ gulp.task('babel', function () {
     }))
     .pipe(gulp.dest('build/js'))  //输出到指定目录去
     .pipe(livereload())
-  
 })
 
 gulp.task('browserify', function() {
@@ -78,7 +76,6 @@ gulp.task('browserify', function() {
     .pipe(rename('built.js'))
     .pipe(gulp.dest('./build/js'))
     .pipe(livereload())
-  
 });
 
 //压缩js
