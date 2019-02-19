@@ -6,6 +6,7 @@ import '../less/test1.less';
 import '../less/test2.less';
 
 console.log(add(1, 2));
+console.log(add(1, 2));
 console.log(mul(1, 2));
 
 const p = new Person(name, age);

@@ -1,9 +1,11 @@
 const {resolve} = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+
 
 module.exports = {
   //入口
-  entry: './src/js/app.js',
+  entry: ['./src/js/app.js', './src/index.html'],  //手动引入html文件
   //输出
   output: {
     //输出的文件路径
@@ -53,10 +55,16 @@ module.exports = {
               limit: 8192,  // 8 * 1024 = 8kb  8kb以下的图片会自动转换为base64格式
               name: '[hash:7].[ext]',
               outputPath: 'images',  //图片资源的输出路径（输出到哪个文件夹去）
-              publicPath: '../build/images' //修改样式文件中url图片路径
+              publicPath: '../images' //修改样式文件中url图片路径
             }
           }
         ]
+      },
+      {
+        test: /\.(html)$/,
+        use: {
+          loader: 'html-loader'  //加载html文件，使其能用上热更新功能
+        }
       }
     ]
   },
@@ -64,8 +72,26 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',  //重命名输出文件的名字
       template: './src/index.html'  //模板资源：往引入的模板资源中添加js和css，输出出去
-    })
+    }),
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin()
   ],
   //模式
-  mode: 'development'
+  mode: 'development',
+  /*
+    webpack-dev-server配置
+    启动指令：webpack-dev-server ,这个指令不能直接运行，需要配置成package.json中的指令
+    热更新功能的问题：
+      1. 图片路径问题
+      2. html不能热更新
+        热更新功能检查的文件，必须是以loader的方式导入或者webpack能识别的文件，其他方式/文件不能热更新的
+    修改的配置目录，导致直接运行指令就不到配置文件了，所以重新配置
+      webpack-dev-server --config ./config/webpack.dev.js
+   */
+  devServer: {
+    contentBase: './build',  //文件路径
+    hot: true, //开启热模替换功能
+    port: 3000,
+    open: true  //是否自动打开浏览器
+  }
 }
