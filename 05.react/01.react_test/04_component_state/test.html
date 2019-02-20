@@ -18,6 +18,63 @@
     1. 显示h2标题, 初始文本为: 你喜欢我
     2. 点击标题更新为: 我喜欢你
   */
+  //定义组件
+  class IsLike extends React.Component {
+    /*constructor (props) {
+      super(props);
+      /!*
+        初始化组件的状态
+          组件状态的名称：与控制功能相关, 与状态值相关
+          组件状态的值：
+      *!/
+      this.state = {
+        isLikeMe: true
+      }
+      //constructor函数只会执行一次
+      // 需求：改变组件的自定义函数this指向
+      // this.handleClick.bind(this) 改变了this指向为实例对象，并返回一个新函数
+      this.handleClick = this.handleClick.bind(this);
+    }*/
+
+    state = {
+      isLikeMe: true
+    }
+
+    /*handleClick () {
+      // Uncaught TypeError: Cannot read property 'setState' of undefined
+      console.log(this); // undefined --> 实例对象
+      /!*
+        this指向问题：
+          组件的内置函数，this指向实例对象
+          组件的自定义函数，this指向undefined
+        需求：改变组件的自定义函数this指向
+       *!/
+
+      //更新组件的状态
+      //一旦调用setState方法，就会重新渲染组件
+      this.setState({
+        isLikeMe: !this.state.isLikeMe
+      })
+    }*/
+
+    handleClick = () => {
+      //更新组件的状态
+      //一旦调用setState方法，就会重新渲染组件
+      this.setState({
+        isLikeMe: !this.state.isLikeMe
+      })
+    }
+
+    render () {
+      //获取当前状态的值
+      const {isLikeMe} = this.state;
+
+      return <h2 onClick={this.handleClick}>{isLikeMe ? '你喜欢我' : '我喜欢你'}</h2>;
+    }
+  }
+  //渲染组件
+  ReactDOM.render(<IsLike />, document.getElementById('example'));
+
 </script>
 </body>
 </html>
