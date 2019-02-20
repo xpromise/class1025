@@ -20,6 +20,20 @@
       arr.map((item, index, arr) => {
         return 123456
       })
+
+      //产生一个新数组, 新数组的每一项值就是返回值为true
+      arr.filter((item, index, arr) => {
+        return true
+      })
+
+      //返回一个值，最后一次遍历后生成的值
+      arr.reduce((prev, curr) => {
+        return prev + curr;
+      }, 0)
+
+      arr.reduce((prev, curr) => {
+        return [...prev, curr]
+      }, [])
      */
 
     const vDOM = (
