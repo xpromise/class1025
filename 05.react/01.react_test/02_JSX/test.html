@@ -7,5 +7,24 @@
 <body>
   <div id="test1"></div>
   <div id="test2"></div>
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <script type="text/javascript">
+    //创建虚拟DOM对象
+    const vDom3 = React.createElement('span', {}, '~~~~');  //不是jsx语法
+    const vDom1 = React.createElement('h2', {id: 'id1'}, vDom3);  //不是jsx语法
+    console.log(vDom1);  //对象
+    //将虚拟DOM对象渲染到页面指定容器中
+    ReactDOM.render(vDom1, document.getElementById('test1'));
+  </script>
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+  <script type="text/babel">
+    const id = 'id2';
+    const content = 'hello react!';
+    //花括号里面放置js代码
+    const vDom2 = <h2 id={id}>{content}<span>~~~~</span></h2>; //jsx语法
+    console.log(vDom2);
+    ReactDOM.render(vDom2, document.getElementById('test2'));
+  </script>
 </body>
 </html>
