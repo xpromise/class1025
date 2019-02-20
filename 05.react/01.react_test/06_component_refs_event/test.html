@@ -19,6 +19,41 @@
       2. 点击按钮, 提示第一个输入框中的值
       3. 当第2个输入框失去焦点时, 提示这个输入框中的值
    */
+    /*
+      1. 实现静态组件：只有固定不变内容显示
+      2. 实现交互效果：
+
+      ref作用： 获取dom元素
+     */
+    class InputDemo extends React.Component {
+
+      handleClick = () => {
+        console.log(this);
+        const value = this.msgInput.value.trim();
+        alert(value);
+      }
+
+      handleBlur = event => {
+        // console.log(event.target);
+        const value = event.target.value.trim();
+        alert(value);
+        event.target.value = '';
+      }
+
+      render () {
+        return (
+          <div>
+            <input type="text" ref={input => this.msgInput = input}/> &nbsp;&nbsp;
+            {/*<input type="text" ref="msgInput"/> &nbsp;&nbsp;*/}
+            <button onClick={this.handleClick}>点击提示数据</button> &nbsp;&nbsp;
+            <input type="text" placeholder="失去焦点提示数据" onBlur={this.handleBlur}/>
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(<InputDemo />, document.getElementById('example'));
+
   </script>
 </body>
 </html>

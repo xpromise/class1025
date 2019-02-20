@@ -13,7 +13,103 @@
   <script type="text/javascript" src="../js/prop-types.js"></script>
   <script type="text/javascript" src="../js/babel.min.js"></script>
   <script type="text/babel">
+    /*
+      1. 拆分组件：具有变化/功能的界面会拆分成一个组件
+        App   应用主组件
+        AddTodo
+        TodoList
+      2. 实现静态组件
+        有一个基本效果显示的组件，但是没有交互效果
+      3. 实现动态组件
+        - 状态数据在哪？
+          - 如果只有一个组件需要，定义该组件内部
+          - 如果有多个组件需要，定义在多个组件的公共父组件
+        - 状态数据是什么类型
+          - array 为了方便后面遍历显示
+          - object
+        - 状态数据叫什么名字：todos
 
+        子组件要修改父组件状态数据：将修改状态数据的方法定义在父组件中，然后将该方法传给子组件
+     */
+    //定义组件
+    class App extends React.Component {
+      state = {
+        todos: ['吃饭~~', '睡觉~~', '打豆豆~~']
+      }
+
+      //定义修改状态数据的方法
+      add = todo => {
+        //获取用户输入的值
+        const {todos} = this.state;
+        //会影响原数据
+        // todos.unshift(todo);
+        //修改状态数据
+        this.setState({
+          todos: [todo, ...todos]
+        })
+      }
+
+      render () {
+        //获取状态数据
+        const {todos} = this.state;
+        return (
+          <div>
+            <h1>simple TODO List</h1>
+            <AddTodo add={this.add}/>
+            <TodoList todos={todos}/>
+          </div>
+        )
+      }
+    }
+
+    class AddTodo extends React.Component {
+      static propTypes = {
+        add: PropTypes.func.isRequired
+      }
+
+      addTodo = () => {
+        //收集input的值
+        const value = this.msgInput.value.trim();
+        //判断value必须有值
+        if (value) {
+          //调用父组件传递的方法，修改父组件的状态数据
+          this.props.add(value);
+        }
+
+      }
+
+      render () {
+        return (
+          <div>
+            <input type="text" ref={input => this.msgInput = input}/>
+            <button onClick={this.addTodo}>Add #3</button>
+          </div>
+        )
+      }
+    }
+
+    class TodoList extends React.Component {
+      static propTypes = {
+        todos: PropTypes.array.isRequired
+      }
+
+      render () {
+        //获取组件外向组件内传递的数据
+        const {todos} = this.props;
+        return (
+          <ul>
+            {
+              todos.map((item, index) => {
+                return <li key={index}>{item}</li>
+              })
+            }
+          </ul>
+        )
+      }
+    }
+
+    //渲染组件
+    ReactDOM.render(<App />, document.getElementById('example'));
   </script>
 </body>
 </html>
