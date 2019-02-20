@@ -10,6 +10,7 @@
 
 <script type="text/javascript" src="../js/react.development.js"></script>
 <script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/prop-types.js"></script>
 <script type="text/javascript" src="../js/babel.min.js"></script>
 
 <script type="text/babel">
@@ -19,6 +20,67 @@
   1). 如果性别没有指定, 默认为男
   2). 如果年龄没有指定, 默认为18
   */
+  /*
+    props作用：组件外向组件内部传递可变化数据
+    注意：组件内部不能修改props的值，只能由外部修改（对于组件内部而言，props值只是可读属性）
+   */
+  class PersonInfo extends React.Component {
+    /*
+      加上static 定义的属性/方法 是在 组件对象上 PersonInfo
+      不加static 定义的属性/方法 是在 组件的实例对象上 this
+     */
+    static propTypes = {
+      name: PropTypes.string.isRequired,
+      age: PropTypes.number,
+      sex: PropTypes.string
+    }
+
+    static defaultProps = {
+      age: 20,
+      sex: '女'
+    }
+
+    constructor (props) {
+      super(props);  //props作用： 在constructor函数中能够读取到props属性
+      console.log(this.props); // undefined  --> {name: "jack", age: 20, sex: "女"}
+      console.log(this);
+    }
+
+    render () {
+      //接受组件外向组件内传递标签属性
+      // console.log(this);
+      const {name, age, sex} = this.props;
+
+      return (
+        <ul>
+          <li>姓名：{name}</li>
+          <li>性别：{sex}</li>
+          <li>年龄：{age}</li>
+        </ul>
+      )
+    }
+  }
+
+  const person = {
+    name: 'jack',
+    // age: 18,
+    // sex: '男'
+  }
+  //对传递的属性值进行约束
+  /*PersonInfo.propTypes = {
+    name: PropTypes.string.isRequired,
+    age: PropTypes.number,
+    sex: PropTypes.string
+  }
+
+  PersonInfo.defaultProps = {
+    age: 20,
+    sex: '女'
+  }*/
+
+  // ReactDOM.render(<PersonInfo name={person.name} age={person.age} sex={person.sex}/>, document.getElementById('example1'));
+  //是babel处理的，让对象能够使用三点运算符
+  ReactDOM.render(<PersonInfo {...person}/>, document.getElementById('example1'));
 
 </script>
 </body>
