@@ -88,7 +88,7 @@
 
     render () {
       return (
-        <form action="xxx">
+        <form action="http://localhost:300" method="get">
           用户名：<input type="text" name='username' onChange={e => this.handleChange(e, 'username')}/>
           密码：<input type="password" name='pwd' onChange={e => this.handleChange(e, 'pwd')}/>
           <input type="submit" value='登陆' onClick={this.handleSubmit}/>
@@ -98,7 +98,8 @@
   }
 
   //渲染到页面上
-  ReactDOM.render(<Control />, document.getElementById('example'));
+  // ReactDOM.render(<Control />, document.getElementById('example'));
+  ReactDOM.render(<NotControl />, document.getElementById('example'));
 
 </script>
 </body>
