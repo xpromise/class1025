@@ -35,10 +35,13 @@
     }
 
     handleUnmount = () => {
-      //关闭定时器
-      clearInterval(this.intervalId);
       //卸载组件
       ReactDOM.unmountComponentAtNode(document.getElementById('example'));
+    }
+
+    componentWillUnmount () {
+      //关闭定时器
+      clearInterval(this.intervalId);
     }
 
     render () {

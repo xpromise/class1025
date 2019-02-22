@@ -36,14 +36,14 @@
     }
     //组件将要接受父组件传递的属性
     componentWillReceiveProps (props) {
-      console.log(props);
-      console.log(this.props);
+      // console.log(props);
+      // console.log(this.props);
       console.log('componentWillReceiveProps()');
     }
     //组件是否更新 - react组件优化：由当前函数的返回值，决定组件是否重新渲染
     shouldComponentUpdate () {
       console.log('shouldComponentUpdate()');
-      return false;
+      return true;
     }
     //组件将要更新
     componentWillUpdate () {
@@ -74,10 +74,25 @@
     componentDidMount () {
       //组件初始化渲染完触发的
       setTimeout(() => {
+        console.log(this.state.data);
+        //更新状态的代码放在最后
         this.setState({
           data: [4, 5, 6]
         })
       }, 1000)
+    }
+
+    shouldComponentUpdate () {
+      console.log('shouldComponentUpdate()111');
+      return true;
+    }
+    //组件将要更新
+    componentWillUpdate () {
+      console.log('componentWillUpdate()111');
+    }
+    //组件已经更新
+    componentDidUpdate () {
+      console.log('componentDidUpdate()111');
     }
 
     render () {
