@@ -17,6 +17,89 @@
     2. 输入用户名密码后, 点击登陆提示输入信息
     3. 不提交表单
   */
+
+  //非受控组件
+  class NotControl extends React.Component {
+
+    handleSubmit = e => {
+      //取消默认行为
+      e.preventDefault();
+      //手动收集表单数据
+      const username = this.usernameInput.value;
+      const pwd = this.pwdInput.value;
+      alert(username + '---' + pwd);
+    }
+
+    render () {
+      return (
+        <form action="xxx">
+          用户名：<input type="text" name='username' ref={input => this.usernameInput = input}/>
+          密码：<input type="password" name='pwd' ref={input => this.pwdInput = input}/>
+          <input type="submit" value='登陆' onClick={this.handleSubmit}/>
+        </form>
+      )
+    }
+  }
+
+  //受控组件: 自动收集表单数据
+  class Control extends React.Component {
+    state = {
+      username: '',
+      pwd: ''
+    }
+
+    handleSubmit = e => {
+      //取消默认行为
+      e.preventDefault();
+      //手动收集表单数据
+      const {username, pwd} = this.state;
+      alert(username + '---' + pwd);
+    }
+
+    handleUsername = e => {
+      //更新状态
+      this.setState({
+        username: e.target.value
+      })
+    }
+
+    handlePassword = e => {
+      //更新状态
+      this.setState({
+        pwd: e.target.value
+      })
+    }
+
+    /*handleChange = e => {
+      // console.log(e.target.name);
+      //更新状态
+      this.setState({
+        [e.target.name]: e.target.value
+      })
+    }*/
+
+    handleChange = (e, name) => {
+      // console.log(e.target.name);
+      //更新状态
+      this.setState({
+        [name]: e.target.value
+      })
+    }
+
+    render () {
+      return (
+        <form action="xxx">
+          用户名：<input type="text" name='username' onChange={e => this.handleChange(e, 'username')}/>
+          密码：<input type="password" name='pwd' onChange={e => this.handleChange(e, 'pwd')}/>
+          <input type="submit" value='登陆' onClick={this.handleSubmit}/>
+        </form>
+      )
+    }
+  }
+
+  //渲染到页面上
+  ReactDOM.render(<Control />, document.getElementById('example'));
+
 </script>
 </body>
 </html>

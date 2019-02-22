@@ -55,7 +55,7 @@
         return (
           <div>
             <h1>simple TODO List</h1>
-            <AddTodo add={this.add}/>
+            <AddTodo add={this.add} length={todos.length}/>
             <TodoList todos={todos}/>
           </div>
         )
@@ -64,7 +64,8 @@
 
     class AddTodo extends React.Component {
       static propTypes = {
-        add: PropTypes.func.isRequired
+        add: PropTypes.func.isRequired,
+        length: PropTypes.number.isRequired
       }
 
       addTodo = () => {
@@ -74,6 +75,8 @@
         if (value) {
           //调用父组件传递的方法，修改父组件的状态数据
           this.props.add(value);
+          //清空输入框数据
+          this.msgInput.value = '';
         }
 
       }
@@ -82,7 +85,7 @@
         return (
           <div>
             <input type="text" ref={input => this.msgInput = input}/>
-            <button onClick={this.addTodo}>Add #3</button>
+            <button onClick={this.addTodo}>Add #{this.props.length}</button>
           </div>
         )
       }
