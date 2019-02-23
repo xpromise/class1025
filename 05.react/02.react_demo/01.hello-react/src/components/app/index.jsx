@@ -6,7 +6,25 @@ import AddComment from '../add-comment';
 import CommentsList from '../comments-list';
 
 export default class App extends Component {
+  state = {
+    comments: [
+      {name: 'jack', content: 'i love rose'},
+      {name: 'rose', content: 'i love my husband'}
+    ]
+  }
+  
+  addComment = comment => {
+    //获取当前的状态值
+    const {comments} = this.state;
+    //更新状态值
+    this.setState({
+      comments: [comment, ...comments]
+    })
+  }
+  
   render () {
+    const {comments} = this.state;
+    
     return (
       <div>
         <header className="site-header jumbotron">
@@ -19,8 +37,8 @@ export default class App extends Component {
           </div>
         </header>
         <div className="container">
-          <AddComment />
-          <CommentsList />
+          <AddComment addComment={this.addComment}/>
+          <CommentsList comments={comments}/>
         </div>
       </div>
     )
