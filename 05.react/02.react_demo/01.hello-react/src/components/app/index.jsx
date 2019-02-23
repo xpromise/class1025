@@ -22,6 +22,12 @@ export default class App extends Component {
     })
   }
   
+  delComment = delIndex => {
+    this.setState({
+      comments: this.state.comments.filter((comment, index) => index !== delIndex)
+    })
+  }
+  
   render () {
     const {comments} = this.state;
     
@@ -38,7 +44,7 @@ export default class App extends Component {
         </header>
         <div className="container">
           <AddComment addComment={this.addComment}/>
-          <CommentsList comments={comments}/>
+          <CommentsList comments={comments} delComment={this.delComment}/>
         </div>
       </div>
     )
