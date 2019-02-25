@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link, NavLink, Route, Redirect, Switch} from 'react-router-dom';
+import {NavLink, Route, Redirect, Switch} from 'react-router-dom';
 
 import './index.css';
 

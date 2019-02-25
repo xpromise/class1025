@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Route} from 'react-router-dom';
+
+import MessageDetail from '../message-detail';
 
 export default class Message extends Component {
   
@@ -24,22 +26,31 @@ export default class Message extends Component {
     }, 1000)
   }
   
+  goForward = () => {
+    this.props.history.goForward();
+  }
+  
+  goBack = () => {
+    this.props.history.goBack();
+  }
+  
   render () {
     return (
       <div>
         <ul>
           {
             this.state.messages.map((item, index) => (
-              <li>
+              <li key={index}>
                 <Link to={`/home/message/${item.id}`}>{item.content}</Link> &nbsp;&nbsp;
-                <button>push</button> &nbsp;&nbsp;
-                <button>replace</button>
+                <button onClick={() => this.props.history.push(`/home/message/${item.id}`)}>push</button> &nbsp;&nbsp;
+                <button onClick={() => this.props.history.replace(`/home/message/${item.id}`)}>replace</button>
               </li>
             ))
           }
         </ul>
-        <button>前进</button>
-        <button>后退</button>
+        <button onClick={this.goForward}>前进</button>
+        <button onClick={this.goBack}>后退</button>
+        <Route path='/home/message/:id' component={MessageDetail}/>
       </div>
     )
   }
