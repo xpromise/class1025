@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
-import PubSub from 'pubsub-js';
+import PropTypes from 'prop-types';
 
 export default class Search extends Component {
+  static propTypes = {
+    searchUser: PropTypes.func.isRequired
+  }
   
   state = {
     name: ''
@@ -17,8 +20,8 @@ export default class Search extends Component {
     //获取用户输入的搜索名称
     const {name} = this.state;
     if (name) {
-      //发布消息
-      PubSub.publish('NAME', name);
+      //子组件调用父组件的方法，通过这种方式，子组件向父组件传递数据
+      this.props.searchUser(name);
     }
   }
   

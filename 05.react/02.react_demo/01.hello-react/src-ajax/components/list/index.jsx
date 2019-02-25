@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
-import PubSub from 'pubsub-js';
 
 import './index.css';
 
 export default class List extends Component {
+  static propTypes = {
+    name: PropTypes.string.isRequired
+  }
   
   state = {
     isFirstView: true,
@@ -13,33 +16,31 @@ export default class List extends Component {
     success: null
   }
   
-  componentDidMount () {
-    //订阅消息
-    PubSub.subscribe('NAME', (msg, name) => {
-      console.log(msg, name);
-      //发送请求之前，将状态改变为loading
-      this.setState({
-        isLoading: true,
-        isFirstView: false
-      })
-      //发送ajax请求
-      axios.get(`https://api.github.com/search/users?q=${name}`)
-        .then(res => {
-          //获取请求数据
-          const result = res.data.items.map(item => ({name: item.login, url: item.html_url, image: item.avatar_url}));
-          //更新状态
-          this.setState({
-            success: result,
-            isLoading: false
-          })
-        })
-        .catch(err => {
-          this.setState({
-            error: '网络不稳定，请刷新试试',
-            isLoading: false
-          })
-        })
+  //需要更新页面，越快越好
+  componentWillReceiveProps ({name}) {
+    //发送请求之前，将状态改变为loading
+    this.setState({
+      isLoading: true,
+      isFirstView: false
     })
+    //发送ajax请求
+    axios.get(`https://api.github.com/search/users?q=${name}`)
+      .then(res => {
+        //获取请求数据
+        const result = res.data.items.map(item => ({name: item.login, url: item.html_url, image: item.avatar_url}));
+        //更新状态
+        this.setState({
+          success: result,
+          isLoading: false
+        })
+      })
+      .catch(err => {
+        this.setState({
+          error: '网络不稳定，请刷新试试',
+          isLoading: false
+        })
+      })
+    
   }
   
   render () {
