@@ -20,7 +20,7 @@ export default class App extends Component {
           <div className="col-xs-2 col-xs-offset-2">
             <div className="list-group">
               {/*
-              Link组件：相当于a标签，不会有a标签的默认行为，能够修改当前的url地址（作用：修改url地址）
+              Link组件：相当于a标签，不会有a标签的默认行为，能够修改当前的url地址（作用：修改url地址, 并产生浏览历史记录）
               NavLink组件：当前点击的组件，会多一个active类
               */}
               <NavLink className="list-group-item" activeClassName="my-active" to='/about'>About</NavLink>
