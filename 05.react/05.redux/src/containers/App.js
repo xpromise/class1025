@@ -31,6 +31,6 @@ const mapDispatchToProps = (dispatch) => {
 )(App);*/
 
 export default connect(
-  state => ({number: state}),   //将状态数据以props方法传入到UI组件中
+  state => ({number: state.number, count: state.count}),   //将状态数据以props方法传入到UI组件中
   {increment, decrement, incrementAsync}  //将操作状态数据的方法以props方法传入到UI组件中
 )(App);
