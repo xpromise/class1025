@@ -6,7 +6,7 @@ import {createStore, applyMiddleware} from 'redux';
 //让redux支持异步编程，要求异步请求在action creator中完成
 import thunk from 'redux-thunk';
 // 可能插件会报错， 将redux版本降为 3.7
-import { composeWithDevTools } from 'redux-devtools-extension'
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 import reducers from './reducers';
 /*
