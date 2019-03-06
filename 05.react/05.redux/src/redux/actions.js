@@ -4,6 +4,8 @@
     - 工厂函数  (data) => ({type: xxx, data})
  */
 
-export const increment = value => ({type: 'INCREMENT', data: value});
+import {INCREMENT, DECREMENT} from './action-types';
 
-export const decrement = value => ({type: 'DECREMENT', data: value});
+export const increment = value => ({type: INCREMENT, data: value});
+
+export const decrement = value => ({type: DECREMENT, data: value});

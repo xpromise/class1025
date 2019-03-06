@@ -4,16 +4,29 @@
     - action  {type: xxx, data: xxx}
  */
 
+import {INCREMENT, DECREMENT} from './action-types';
+
+//一个reducer管理一种状态数据
 function reducer(preState = 0, action) {
   console.log(preState, action);
   switch (action.type) {
-    case 'INCREMENT' :
+    case INCREMENT :
       return preState + action.data;
-    case 'DECREMENT' :
+    case DECREMENT :
       return preState - action.data;
     default :
       return preState;
   }
 }
+
+/*
+
+function reducer(preState, action) {
+  switch (action.type) {
+    default :
+      return preState;
+  }
+}
+ */
 
 export default reducer;
