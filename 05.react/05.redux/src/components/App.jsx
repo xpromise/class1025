@@ -6,6 +6,7 @@ export default class App extends Component {
     number: PropTypes.number.isRequired,
     increment: PropTypes.func.isRequired,
     decrement: PropTypes.func.isRequired,
+    incrementAsync: PropTypes.func.isRequired,
   }
   
   state = {
@@ -31,10 +32,8 @@ export default class App extends Component {
   }
   
   incrementAsync = () => {
-    setTimeout(() => {
-      const {value} = this.state;
-      this.props.increment(+value);
-    }, 1000)
+    const {value} = this.state;
+    this.props.incrementAsync(+value);
   }
   
   render () {
