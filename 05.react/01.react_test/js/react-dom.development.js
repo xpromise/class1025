@@ -4078,6 +4078,7 @@
    * Returns true when the values of all keys are strictly equal.
    */
   function shallowEqual(objA, objB) {
+    console.log(1111);
     if (is(objA, objB)) {
       return true;
     }
@@ -4086,12 +4087,17 @@
       return false;
     }
     
+    console.log(222);
     var keysA = Object.keys(objA);
     var keysB = Object.keys(objB);
+    
+    console.log(keysA, keysB);
     
     if (keysA.length !== keysB.length) {
       return false;
     }
+    
+    console.log(333);
     
     // Test for A's keys different from B.
     for (var i = 0; i < keysA.length; i++) {

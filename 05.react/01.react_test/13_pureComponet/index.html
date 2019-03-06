@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>09_form</title>
+</head>
+<body>
+<div id="example"></div>
+
+<script type="text/javascript" src="../js/react.development.js"></script>
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/babel.min.js"></script>
+<script type="text/babel">
+  //PureComponent 纯组件  优化 减少render方法
+  // 只能针对一般数据类型处理  一旦引用数据类型就有问题
+  // 浅比较  如果是基本数据类型 值一样就优化 如果是引用数据类型，地址值一样，比较长度，长度相等就优化（不render）
+  class App extends React.PureComponent {
+    state = {
+      value: {num: 0}
+      // value: [0]
+    }
+
+    /*//性能优化: 减少render调用的次数
+    shouldComponentUpdate (nextProps, nextState) {
+      const {value} = this.state;  //获取到之前state的值 preState
+
+      console.log('之前的状态：', value);
+      console.log('更新后的状态: ', nextProps, nextState);
+
+      if (value === nextState.value) {
+        //说明值没有变化
+        return false;
+      }
+
+      return true;
+    }*/
+
+    handleClick = () => {
+      const {value} = this.msgInput;
+      //不要通过this.state.xxx 修改状态数据
+      let obj = this.state.value;
+      obj[value] = value;
+      this.setState({value: obj});
+    }
+
+    render () {
+      console.log('render()');
+
+      return <div>
+        <input type="text" ref={input => this.msgInput = input}/>
+        <button onClick={this.handleClick}>按钮</button>
+        <input type="text" value={this.state.value[0]} onChange={() => {}}/>
+      </div>
+    }
+  }
+
+  ReactDOM.render(<App />, document.getElementById('example'));
+</script>
+</body>
+</html>
