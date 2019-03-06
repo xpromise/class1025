@@ -1,14 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-import App from './App';
+import {Provider} from 'react-redux';
+//使用的是容器组件
+import App from './containers/App';
 import store from './redux/store';
-
-function render() {
-  ReactDOM.render(<App store={store}/>, document.getElementById('root'));
-}
-//初始化渲染
-render();
-
-//监听store管理状态的变化，一旦变化就会调用回调函数
-store.subscribe(render);
+/*
+  Provider
+    1. 将store对象数据传入该传入的组件
+    2. 一旦数据发生变化，重新渲染组件
+ */
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>
+  , document.getElementById('root'));
